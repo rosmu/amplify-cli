@@ -1,0 +1,23 @@
+{
+  "name": "amplify-category-testing",
+  "version": "2.18.7",
+  "description": "amplify-cli testing plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aws-amplify/amplify-cli.git",
+    "directory": "packages/amplify-category-testing"
+  },
+  "author": "Amazon Web Services",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "keywords": [
+    "amplify",
+    "aws"
+  ],
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "inquirer": "^7.3.3",
+    "open": "^7.0.0",
+    "uuid": "^3.4.0"
+  }
+}

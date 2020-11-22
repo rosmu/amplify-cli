@@ -1,0 +1,47 @@
+import { nspawn as spawn, KEY_DOWN_ARROW, getCLIPath } from '..';
+
+export function addDeviceFarm(cwd: string, settings: any) {
+  return new Promise((resolve, reject) => {
+    spawn(getCLIPath(), ['add', 'testing'], { cwd, stripColors: true })
+      .wait('Select an testing provider')
+      .sendCarriageReturn()
+      .wait('Provide your device resource name:')
+      .sendLine(settings.wrongName)
+      .wait('Resource name should be alphanumeric')
+      .send('\b')
+      .delay(1000) // Some delay required for autocomplete and terminal to catch up
+      .sendLine(settings.rightName)
+      .wait('Apps need authorization to send analytics events. Do you want to allow guests')
+      .sendLine('n')
+      .wait(`Successfully added resource ${settings.rightName} locally`)
+      .sendEof()
+      .run((err: Error) => {
+        if (!err) {
+          resolve();
+        } else {
+          reject(err);
+        }
+      });
+  });
+}
+
+export function removeDeviceFarm(cwd: string, settings: any) {
+  return new Promise((resolve, reject) => {
+    spawn(getCLIPath(), ['remove', 'testing'], { cwd, stripColors: true })
+      .wait('Choose the resource you would want to remove')
+      .send('j')
+      .sendCarriageReturn()
+      .wait('Are you sure you want to delete the resource?')
+      .send('y')
+      .sendCarriageReturn()
+      .wait('Successfully removed resource')
+      .sendEof()
+      .run((err: Error) => {
+        if (!err) {
+          resolve();
+        } else {
+          reject(err);
+        }
+      });
+  });
+}

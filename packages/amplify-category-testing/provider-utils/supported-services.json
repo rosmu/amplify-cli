@@ -1,0 +1,31 @@
+{
+  "DeviceFarm": {
+    "inputs": [
+      {
+        "key": "resourceName",
+        "question": "Provide a friendly resource name:",
+        "validation": {
+          "operator": "regex",
+          "value": "^[a-zA-Z0-9]+$",
+          "onErrorMsg": "Resource name should be alphanumeric"
+        },
+        "required": true
+      },
+      {
+        "key": "appName",
+        "question": "Provide your device farm resource name:",
+        "validation": {
+          "operator": "regex",
+          "value": "^[a-zA-Z0-9]+$",
+          "onErrorMsg": "Resource name should be alphanumeric"
+        },
+        "required": true
+      }
+    ],
+    "defaultValuesFilename": "devicefarm-defaults.js",
+    "serviceWalkthroughFilename": "devicefarm-walkthrough.js",
+    "cfnFilename": "devicefarm-cloudformation-template.yaml",
+    "provider": "awscloudformation",
+    "alias": "Amazon DeviceFarm"
+  }
+}
